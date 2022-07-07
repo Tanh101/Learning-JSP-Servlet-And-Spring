@@ -11,8 +11,10 @@
 		<jsp.api.version>2.0</jsp.api.version>
 		<setvlet.api.version>3.1.0</setvlet.api.version>
 		<jspl.api.version>1.2</jspl.api.version>
+		<sitemesh.version>2.4.2</sitemesh.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		
 	</properties>
 
 	<dependencies>
@@ -27,11 +29,16 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${setvlet.api.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jspl.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>${sitemesh.version}</version>
 		</dependency>
 
 
