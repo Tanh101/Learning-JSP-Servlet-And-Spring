@@ -17,13 +17,14 @@ public class CategoryDAO implements ICategoryDAO {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/demoservlet";  
-			Connection conn =  DriverManager.getConnection(url, "root", "6060902");
+			String url = "jdbc:mysql://localhost:3306/demoservlet";
+			Connection conn = DriverManager.getConnection(url, "root", "606902");
 			return conn;
 		} catch (ClassNotFoundException | SQLException e) {
 			return null;
 		}
 	}
+
 	@Override
 	public List<CategoryModel> findAll() {
 		List<CategoryModel> result = new ArrayList<CategoryModel>();
@@ -31,38 +32,38 @@ public class CategoryDAO implements ICategoryDAO {
 		Connection conn = getConnection();
 		PreparedStatement pre = null;
 		ResultSet rs = null;
-		if(conn != null) {
+		if (conn != null) {
 			try {
 				pre = conn.prepareStatement(sql);
 				rs = pre.executeQuery();
-				while(rs.next()) {
+				while (rs.next()) {
 					CategoryModel category = new CategoryModel();
 					category.setId(rs.getLong("id"));
 					category.setCode(rs.getString("code"));
 					category.setName(rs.getString("name"));
 					result.add(category);
 				}
-				if(conn != null) {
+				if (conn != null) {
 					conn.close();
 				}
-				if(pre != null) {
+				if (pre != null) {
 					pre.close();
 				}
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
-			}finally {
+			} finally {
 				try {
-					if(conn != null) {
+					if (conn != null) {
 						conn.close();
 					}
-					if(pre != null) {
+					if (pre != null) {
 						pre.close();
 					}
-					if(rs != null) {
+					if (rs != null) {
 						rs.close();
 					}
 				} catch (Exception e2) {
@@ -72,7 +73,7 @@ public class CategoryDAO implements ICategoryDAO {
 			}
 		}
 		return result;
-		
+
 	}
 //	public static void main(String[] args) throws SQLException {
 //		Connection c = new CategoryDAO().getConnection();

@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.dao.impl;
+package com.laptrinhjavaweb.service.impl;
 import java.util.List;
 
 import javax.inject.Inject;

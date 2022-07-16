@@ -1,11 +1,10 @@
 package com.laptrinhjavaweb.model;
 
-public class NewModel {
+public class NewModel extends AbtractModel{
 	private String title;
 	private String thumnail;
 	private String shortDescription;
 	private String content;
-	private Long categoryID;
 	
 	public String getTitle() {
 		return title;
@@ -30,11 +29,5 @@ public class NewModel {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public Long getCategoryID() {
-		return categoryID;
-	}
-	public void setCategoryID(Long categoryID) {
-		this.categoryID = categoryID;
 	}
 }
