@@ -27,14 +27,14 @@ public class NewDAO implements INewDAO {
 	@Override
 	public List<NewModel> findByCategoryId(Long categoryId) {
 		List<NewModel> result = new ArrayList<NewModel>();
-		String sql = "SELECT * FROM category where categoryid = ?";
+		String sql = "SELECT * FROM news where categoryid = ?";
 		Connection conn = getConnection();
 		PreparedStatement pre = null;
 		ResultSet rs = null;
 		if (conn != null) {
 			try {
 				pre = conn.prepareStatement(sql);
-				pre.setLong(0, categoryId);
+				pre.setLong(1, categoryId);
 				rs = pre.executeQuery();
 				while (rs.next()) {
 					NewModel news = new NewModel();
