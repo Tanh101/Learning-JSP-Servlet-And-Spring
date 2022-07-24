@@ -22,5 +22,11 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 		String sql = "SELECT * FROM news where categoryid = ?";
 		return query(sql, new NewMapper(), categoryId);
 	}
+
+	@Override
+	public Long save(NewModel newModel) {
+		String sql = "INSERT INTO news (title, content, categoryid) VALUES(?, ?, ?)";
+		return null;
+	}
 	
 }

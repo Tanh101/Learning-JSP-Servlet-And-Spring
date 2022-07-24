@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.laptrinhjavaweb.dao.GenericDAO;
 import com.laptrinhjavaweb.mapper.RowMapper;
+import com.laptrinhjavaweb.model.NewModel;
 
 public class AbtractDAO<T> implements GenericDAO<T> {
 	public Connection getConnection() {
@@ -79,5 +80,6 @@ public class AbtractDAO<T> implements GenericDAO<T> {
 			e.printStackTrace();
 		}
 	}
+
 
 }

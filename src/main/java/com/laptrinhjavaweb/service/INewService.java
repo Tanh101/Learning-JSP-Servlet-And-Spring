@@ -5,4 +5,5 @@ import com.laptrinhjavaweb.model.NewModel;
 
 public interface INewService {
 	List<NewModel> findByCategoryId(Long categoryid); 
+	NewModel save(NewModel newModel);
 }
