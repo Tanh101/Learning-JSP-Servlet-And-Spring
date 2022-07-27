@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,12 +69,14 @@ public class AbtractDAO<T> implements GenericDAO<T> {
 				int index = i + 1;
 				if (parameter instanceof Long) {
 					pre.setLong(index, (Long) (parameter));
-				}else if(parameter instanceof String) {
+				} else if (parameter instanceof String) {
 					pre.setString(index, (String) parameter);
-				}else if(parameter instanceof Integer) {
+				} else if (parameter instanceof Integer) {
 					pre.setInt(index, (int) parameter);
-				}else if(parameter instanceof Boolean) {
+				} else if (parameter instanceof Boolean) {
 					pre.setBoolean(index, (boolean) parameter);
+				}else if(parameter instanceof Timestamp) {
+					pre.setTimestamp(index, (Timestamp) parameter);
 				}
 			}
 		} catch (SQLException e) {
@@ -81,5 +85,80 @@ public class AbtractDAO<T> implements GenericDAO<T> {
 		}
 	}
 
+	@Override
+	public void update(String sql, Object... parameters) {
+		Connection conn = null;
+		PreparedStatement statement = null;
+		try {
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			statement = conn.prepareStatement(sql);
+			setParameter(statement, parameters);
+			statement.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+	}
+
+	@Override
+	public Long insert(String sql, Object... parameters) {
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
+		Long id = null;
+		try {
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			setParameter(statement, parameters);
+			statement.executeUpdate();
+			rs = statement.getGeneratedKeys();
+			if(rs.next()) {
+				id = rs.getLong(1);
+			}
+			conn.commit();
+			return id;
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e2) {
+				return null;
+			}
+		}
+		return id;
+	}
 
 }

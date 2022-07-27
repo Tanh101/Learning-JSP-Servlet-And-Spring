@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.laptrinhjavaweb.model.NewModel;
 import com.laptrinhjavaweb.model.UserModel;
 import com.laptrinhjavaweb.service.ICategoryService;
 import com.laptrinhjavaweb.service.INewService;
@@ -26,8 +27,14 @@ public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 2686801510274002166L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException {
-		String code = "van-hoa";
-		String name = "";
+		String title = "Bai viet 4";
+		String content = "Bai viet 4";
+		Long categoryID = 1L;
+		NewModel newModel = new NewModel();
+		newModel.setTitle(title);
+		newModel.setContent(content);
+		newModel.setCategoryId(categoryID);
+		newService.save(newModel);
 		request.setAttribute("categories", categoryService.fillAll());
 		RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
 		rd.forward(request, response);

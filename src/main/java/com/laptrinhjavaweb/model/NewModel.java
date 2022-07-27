@@ -5,7 +5,16 @@ public class NewModel extends AbtractModel{
 	private String thumnail;
 	private String shortDescription;
 	private String content;
+	private Long categoryId;
 	
+	
+	
+	public Long getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Long categoryid) {
+		this.categoryId = categoryid;
+	}
 	public String getTitle() {
 		return title;
 	}
