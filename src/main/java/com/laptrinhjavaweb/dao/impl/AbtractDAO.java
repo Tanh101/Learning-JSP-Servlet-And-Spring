@@ -10,9 +10,12 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jboss.weld.util.Types;
+
 import com.laptrinhjavaweb.dao.GenericDAO;
 import com.laptrinhjavaweb.mapper.RowMapper;
 import com.laptrinhjavaweb.model.NewModel;
+import com.mysql.cj.xdevapi.Type;
 
 public class AbtractDAO<T> implements GenericDAO<T> {
 	public Connection getConnection() {
@@ -77,6 +80,8 @@ public class AbtractDAO<T> implements GenericDAO<T> {
 					pre.setBoolean(index, (boolean) parameter);
 				}else if(parameter instanceof Timestamp) {
 					pre.setTimestamp(index, (Timestamp) parameter);
+				}else if(parameter == null) {
+					pre.setString(index, null);
 				}
 			}
 		} catch (SQLException e) {

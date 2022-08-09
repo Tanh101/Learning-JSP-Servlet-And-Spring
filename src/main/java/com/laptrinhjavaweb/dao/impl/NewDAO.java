@@ -34,4 +34,15 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 		List<NewModel> news = query(sql, new NewMapper(), id);
 		return news.isEmpty() ? null : news.get(0);
 	}
+
+	@Override
+	public void Update(NewModel updateNew) {
+		String sql = "UPDATE TABLE news SET title = ?, thumbnail = ?, "
+				+ "shortdesscription = ?, content = ?, categoryid = ?, "
+				+ "createdDate = ?, createBy = ?"
+				+ " WHERE id = ?";
+		update(sql, updateNew.getTitle(), updateNew.getThumbnail(), updateNew.getShortDescription(), 
+				updateNew.getContent(), updateNew.getCategoryId(), updateNew.getCreateDate(), updateNew.getCreatedby(), updateNew.getId());
+		
+	}
 }

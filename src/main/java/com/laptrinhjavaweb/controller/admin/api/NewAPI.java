@@ -31,12 +31,26 @@ public class NewAPI extends HttpServlet {
 		mapper.writeValue(response.getOutputStream(), newModel);
 	}
 
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) {
-		
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		NewModel updateNew = HttpUtil.of(request.getReader()).toModel(NewModel.class);
+		updateNew = newService.update(updateNew);
+		mapper.writeValue(response.getOutputStream(), updateNew);
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
 
+	}
+	
+	private void saveOrUpdate() {
+//		ObjectMapper mapper = new ObjectMapper();
+//		request.setCharacterEncoding("UTF-8");
+//		response.setContentType("application/json");
+//		NewModel newModel = HttpUtil.of(request.getReader()).toModel(NewModel.class);
+//		newModel = newService.save(newModel);
+//		mapper.writeValue(response.getOutputStream(), newModel);
 	}
 
 }

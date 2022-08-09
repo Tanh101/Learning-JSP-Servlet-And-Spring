@@ -25,5 +25,15 @@ public class NewServive implements INewService {
 		Long newId = newDao.save(newModel);
 		return newDao.findOne(newId);
 	}
+
+
+	@Override
+	public NewModel update(NewModel updateNew) {
+		NewModel oldNew = newDao.findOne(updateNew.getId());
+		updateNew.setCreateDate(oldNew.getCreateDate());
+		updateNew.setCreatedby(oldNew.getCreatedby());
+		newDao.Update(updateNew);
+		return newDao.findOne(updateNew.getId());
+	}
 	
 }

@@ -8,5 +8,5 @@ public interface INewDAO extends GenericDAO<NewModel> {
 	NewModel findOne(Long id);
 	List<NewModel> findByCategoryId(Long categoryId); 
 	Long save(NewModel newModel);
-	
+	void Update(NewModel updateNew);
 }

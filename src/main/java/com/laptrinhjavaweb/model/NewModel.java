@@ -2,7 +2,7 @@ package com.laptrinhjavaweb.model;
 
 public class NewModel extends AbtractModel{
 	private String title;
-	private String thumnail;
+	private String thumbnail;
 	private String shortDescription;
 	private String content;
 	private Long categoryId;
@@ -21,11 +21,11 @@ public class NewModel extends AbtractModel{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getThumnail() {
-		return thumnail;
+	public String getThumbnail() {
+		return thumbnail;
 	}
-	public void setThumnail(String thumnail) {
-		this.thumnail = thumnail;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	public String getShortDescription() {
 		return shortDescription;
