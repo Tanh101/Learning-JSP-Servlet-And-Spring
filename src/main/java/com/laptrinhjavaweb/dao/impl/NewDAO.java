@@ -28,4 +28,10 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 		return insert(sql, newModel.getTitle(), newModel.getContent(), newModel.getCategoryId());
 	}
 
+	@Override
+	public NewModel findOne(Long id) {
+		String sql = "SELECT * FROM news where id = ?";
+		List<NewModel> news = query(sql, new NewMapper(), id);
+		return news.isEmpty() ? null : news.get(0);
+	}
 }

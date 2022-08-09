@@ -23,8 +23,7 @@ public class NewServive implements INewService {
 	public NewModel save(NewModel newModel) {
 		
 		Long newId = newDao.save(newModel);
-		System.out.println(newId);
-		return null;
+		return newDao.findOne(newId);
 	}
 	
 }
