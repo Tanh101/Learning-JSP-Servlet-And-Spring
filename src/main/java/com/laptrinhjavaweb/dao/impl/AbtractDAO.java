@@ -85,7 +85,6 @@ public class AbtractDAO<T> implements GenericDAO<T> {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

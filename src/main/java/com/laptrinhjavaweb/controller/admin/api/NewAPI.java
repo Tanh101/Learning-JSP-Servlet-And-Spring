@@ -40,8 +40,13 @@ public class NewAPI extends HttpServlet {
 		mapper.writeValue(response.getOutputStream(), updateNew);
 	}
 
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
-
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		NewModel newModel = HttpUtil.of(request.getReader()).toModel(NewModel.class);
+		newService.delete(newModel.getIds());
+		mapper.writeValue(response.getOutputStream(), "{}");
 	}
 	
 	private void saveOrUpdate() {

@@ -36,8 +36,8 @@ public class HomeController extends HttpServlet {
 //		newModel.setCategoryId(categoryID);
 //		newService.save(newModel);
 //		request.setAttribute("categories", categoryService.fillAll());
-//		RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
-//		rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

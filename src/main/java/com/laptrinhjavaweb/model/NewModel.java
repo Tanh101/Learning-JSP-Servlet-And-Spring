@@ -6,9 +6,16 @@ public class NewModel extends AbtractModel{
 	private String shortDescription;
 	private String content;
 	private Long categoryId;
+	private long[] ids;
 	
 	
 	
+	public long[] getIds() {
+		return ids;
+	}
+	public void setIds(long[] ids) {
+		this.ids = ids;
+	}
 	public Long getCategoryId() {
 		return categoryId;
 	}

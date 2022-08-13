@@ -37,12 +37,18 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 
 	@Override
 	public void Update(NewModel updateNew) {
-		String sql = "UPDATE TABLE news SET title = ?, thumbnail = ?, "
-				+ "shortdesscription = ?, content = ?, categoryid = ?, "
-				+ "createdDate = ?, createBy = ?"
-				+ " WHERE id = ?";
+		String sql = "UPDATE news SET title = ?, thumbnail = ?,\r\n"
+				+ "shortdesscription =  ? , content = ?, categoryid = ?, createdDate = ?, createBy = ?\r\n"
+				+ "WHERE id = ?";
 		update(sql, updateNew.getTitle(), updateNew.getThumbnail(), updateNew.getShortDescription(), 
 				updateNew.getContent(), updateNew.getCategoryId(), updateNew.getCreateDate(), updateNew.getCreatedby(), updateNew.getId());
+		
+	}
+
+	@Override
+	public void delete(long id) {
+		String sql = "DELETE FROM news WHERE id = ?";
+		update(sql, id);
 		
 	}
 }
