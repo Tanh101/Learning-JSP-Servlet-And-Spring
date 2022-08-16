@@ -14,6 +14,16 @@ public class NewMapper implements RowMapper<NewModel>{
 			news.setTitle(rs.getString("title"));
 			news.setContent(rs.getString("content"));
 			news.setCategoryId(rs.getLong("categoryid"));
+			news.setThumbnail(rs.getString("thumbnail"));
+			news.setShortDescription(rs.getString("shortdesscription"));
+			news.setCreateDate(rs.getTimestamp("createdDate"));
+			news.setCreatedby(rs.getString("createBy"));
+			if(rs.getTimestamp("modifiedDate") != null) {
+				news.setModifiedDate(rs.getTimestamp("modifiedDate"));
+			}
+			if(rs.getString("modifiedBy") != null) {
+				news.setModifiedby(rs.getString("modifiedBy"));
+			}
 			return news;
 			
 		} catch (Exception e) {

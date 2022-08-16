@@ -36,7 +36,6 @@ public class NewServive implements INewService {
 		updateNew.setCreatedby(oldNew.getCreatedby());
 		updateNew.setModifiedDate(new Timestamp(System.currentTimeMillis()));
 		updateNew.setModifiedby("");
-		
 		newDao.Update(updateNew);
 		return newDao.findOne(updateNew.getId());
 	}

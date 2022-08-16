@@ -80,8 +80,6 @@ public class AbtractDAO<T> implements GenericDAO<T> {
 					pre.setBoolean(index, (boolean) parameter);
 				}else if(parameter instanceof Timestamp) {
 					pre.setTimestamp(index, (Timestamp) parameter);
-				}else if(parameter == null) {
-					pre.setString(index, null);
 				}
 			}
 		} catch (SQLException e) {

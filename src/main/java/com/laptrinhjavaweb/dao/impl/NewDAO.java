@@ -13,6 +13,7 @@ import com.laptrinhjavaweb.dao.INewDAO;
 import com.laptrinhjavaweb.mapper.NewMapper;
 import com.laptrinhjavaweb.model.CategoryModel;
 import com.laptrinhjavaweb.model.NewModel;
+
 public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 
 	@Override
@@ -24,8 +25,11 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 
 	@Override
 	public Long save(NewModel newModel) {
-		String sql = "INSERT INTO news (title, content, categoryid) VALUES(?, ?, ?)";
-		return insert(sql, newModel.getTitle(), newModel.getContent(), newModel.getCategoryId());
+		String sql = "INSERT INTO news (title, content, categoryid, thumbnail, shortdesscription,"
+				+ " createdDate, createBy ) " + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+		return insert(sql, newModel.getTitle(), newModel.getContent(), newModel.getCategoryId(),
+				newModel.getThumbnail(), newModel.getShortDescription(), newModel.getCreateDate(),
+				newModel.getCreatedby());
 	}
 
 	@Override
@@ -37,18 +41,19 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 
 	@Override
 	public void Update(NewModel updateNew) {
-		String sql = "UPDATE news SET title = ?, thumbnail = ?,\r\n"
-				+ "shortdesscription =  ? , content = ?, categoryid = ?, createdDate = ?, createBy = ?\r\n"
-				+ "WHERE id = ?";
-		update(sql, updateNew.getTitle(), updateNew.getThumbnail(), updateNew.getShortDescription(), 
-				updateNew.getContent(), updateNew.getCategoryId(), updateNew.getCreateDate(), updateNew.getCreatedby(), updateNew.getId());
-		
+		String sql = "UPDATE news SET title = ?, thumbnail = ?, shortdesscription =  ? ,\r\n"
+				+ "content = ?, categoryid = ?, createdDate = ?, createBy = ?, modifiedDate = ?, modifiedBy = ?\r\n"
+				+ "\nWHERE id = ?";
+		update(sql, updateNew.getTitle(), updateNew.getThumbnail(), updateNew.getShortDescription(),
+				updateNew.getContent(), updateNew.getCategoryId(), updateNew.getCreateDate(), 
+				updateNew.getCreatedby(), updateNew.getModifiedDate(), updateNew.getModifiedby(), updateNew.getId());
+
 	}
 
 	@Override
 	public void delete(long id) {
 		String sql = "DELETE FROM news WHERE id = ?";
 		update(sql, id);
-		
+
 	}
 }
