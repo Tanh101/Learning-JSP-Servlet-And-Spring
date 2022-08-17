@@ -56,4 +56,11 @@ public class NewDAO extends AbtractDAO<NewModel> implements INewDAO {
 		update(sql, id);
 
 	}
+
+	@Override
+	public List<NewModel> findAll() {
+		String sql = "SELECT * FROM news";
+		List<NewModel> news = query(sql, new NewMapper());
+		return news.isEmpty() ? null : news;
+	}
 }

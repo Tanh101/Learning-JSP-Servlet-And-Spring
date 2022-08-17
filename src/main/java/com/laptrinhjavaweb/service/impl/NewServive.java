@@ -48,5 +48,11 @@ public class NewServive implements INewService {
 		}
 		
 	}
+
+
+	@Override
+	public List<NewModel> findAll() {
+		return newDao.findAll();
+	}
 	
 }

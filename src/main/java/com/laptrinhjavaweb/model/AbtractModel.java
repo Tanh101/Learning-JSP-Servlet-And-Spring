@@ -1,6 +1,8 @@
 package com.laptrinhjavaweb.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AbtractModel {
 	private Long id;
@@ -38,4 +40,5 @@ public class AbtractModel {
 	private Timestamp modifiedDate;
 	private String createdby;
 	private String modifiedby;
+	
 }
